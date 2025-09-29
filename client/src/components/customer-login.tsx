@@ -5,14 +5,15 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
-import { User, Eye, EyeOff, Lock, Mail, Building } from "lucide-react"
+import { User, Eye, EyeOff, Lock, Mail, Building, ArrowLeft } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 
 interface CustomerLoginProps {
   onLogin: (credentials: { email: string; password: string }) => void
+  onBack: () => void
 }
 
-export function CustomerLogin({ onLogin }: CustomerLoginProps) {
+export function CustomerLogin({ onLogin, onBack }: CustomerLoginProps) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
@@ -45,6 +46,17 @@ export function CustomerLogin({ onLogin }: CustomerLoginProps) {
   return (
     <div className="min-h-screen bg-background cyber-bg-glow cyber-grid flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-primary/10 pointer-events-none" />
+      
+      <div className="absolute top-4 left-4">
+        <Button 
+          variant="outline" 
+          onClick={onBack}
+          data-testid="button-back-to-selection"
+        >
+          <ArrowLeft className="h-4 w-4 mr-2" />
+          Back to Selection
+        </Button>
+      </div>
       
       <Card className="w-full max-w-md cyber-border" data-testid="card-customer-login">
         <CardHeader className="space-y-4 text-center">

@@ -51,6 +51,10 @@ export default function App() {
     setSelectedRole(role);
   };
 
+  const handleBackToSelection = () => {
+    setSelectedRole(null);
+  };
+
   const handleLogin = (credentials: { email: string; password: string }) => {
     setAuthState({
       isAuthenticated: true,
@@ -81,9 +85,9 @@ export default function App() {
             selectedRole === null ? (
               <AuthSelector onSelectRole={handleRoleSelect} />
             ) : selectedRole === "admin" ? (
-              <AdminLogin onLogin={handleLogin} />
+              <AdminLogin onLogin={handleLogin} onBack={handleBackToSelection} />
             ) : (
-              <CustomerLogin onLogin={handleLogin} />
+              <CustomerLogin onLogin={handleLogin} onBack={handleBackToSelection} />
             )
           ) : (
             <SidebarProvider style={style as React.CSSProperties}>
