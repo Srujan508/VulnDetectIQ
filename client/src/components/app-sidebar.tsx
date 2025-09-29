@@ -62,11 +62,11 @@ export function AppSidebar() {
     <Sidebar data-testid="sidebar-main">
       <SidebarHeader className="p-4">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded bg-primary flex items-center justify-center">
+          <div className="w-8 h-8 rounded bg-primary flex items-center justify-center cyber-glow">
             <Shield className="h-5 w-5 text-primary-foreground" />
           </div>
           <div>
-            <h2 className="font-semibold text-sm">CyberShield</h2>
+            <h2 className="font-semibold text-sm cyber-text-glow">CyberShield</h2>
             <p className="text-xs text-muted-foreground">Security Dashboard</p>
           </div>
         </div>

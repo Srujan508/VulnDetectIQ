@@ -75,10 +75,10 @@ export function QueryInterface() {
   }
 
   return (
-    <Card className="h-[600px] flex flex-col" data-testid="component-query-interface">
+    <Card className="h-[600px] flex flex-col cyber-border cyber-scan-line" data-testid="component-query-interface">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Bot className="h-5 w-5" />
+        <CardTitle className="flex items-center gap-2 cyber-text-glow">
+          <Bot className="h-5 w-5 text-primary" />
           Intelligent Query Interface
         </CardTitle>
       </CardHeader>
