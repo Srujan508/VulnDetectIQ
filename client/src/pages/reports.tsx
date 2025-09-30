@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Download, FileText, Calendar, BarChart } from "lucide-react"
+// import { VulnerabilityIdentificationTool } from "@/components/vulnerability-identification-tool"
 
 //todo: remove mock functionality
 const mockReports = [
@@ -44,6 +45,7 @@ export default function ReportsPage() {
 
   return (
     <div className="space-y-6">
+      {/* <VulnerabilityIdentificationTool /> */}
       <div>
         <h1 className="text-3xl font-bold tracking-tight">Reports & Analytics</h1>
         <p className="text-muted-foreground">

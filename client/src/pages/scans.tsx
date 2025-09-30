@@ -1,16 +1,22 @@
-import { ScanManagement } from "@/components/scan-management"
+import { useState } from "react"
+// import { ScanManagement } from "@/components/scan-management"
+import { ScanConfigurationForm } from "@/components/scan-configuration-form"
+import { VulnerabilityIdentificationTool } from "@/components/vulnerability-identification-tool"
 
 export default function ScansPage() {
+  const [scanStarted, setScanStarted] = useState(false)
+
+  const handleStartScan = () => {
+    setScanStarted(true)
+  }
+
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Scan Management</h1>
-        <p className="text-muted-foreground">
-          Manage and monitor your security scans across network, web, and code analysis.
-        </p>
-      </div>
-
-      <ScanManagement />
+      {scanStarted ? (
+        <VulnerabilityIdentificationTool />
+      ) : (
+        <ScanConfigurationForm onStartScan={handleStartScan} />
+      )}
     </div>
   )
 }

@@ -12,13 +12,14 @@ import { AuthSelector } from "@/components/auth-selector";
 import { AdminLogin } from "@/components/admin-login";
 import { CustomerLogin } from "@/components/customer-login";
 import { Button } from "@/components/ui/button";
-import { LogOut } from "lucide-react";
+import { LogOut, MessageCircle } from "lucide-react"; // Removed Bot
 import Dashboard from "@/pages/dashboard";
 import QueryPage from "@/pages/query";
 import ReportsPage from "@/pages/reports";
 import ScansPage from "@/pages/scans";
 import VulnerabilitiesPage from "@/pages/vulnerabilities";
 import NotFound from "@/pages/not-found";
+import { Chatbot } from "@/components/chatbot";
 
 type AuthState = {
   isAuthenticated: boolean;
@@ -30,7 +31,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Dashboard} />
-      <Route path="/query" component={QueryPage} />
+      {/* <Route path="/query" component={QueryPage} /> */}
       <Route path="/reports" component={ReportsPage} />
       <Route path="/scans" component={ScansPage} />
       <Route path="/vulnerabilities" component={VulnerabilitiesPage} />
@@ -46,6 +47,7 @@ export default function App() {
     user: null
   });
   const [selectedRole, setSelectedRole] = useState<"admin" | "customer" | null>(null);
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
 
   const handleRoleSelect = (role: "admin" | "customer") => {
     setSelectedRole(role);
@@ -70,6 +72,10 @@ export default function App() {
       user: null
     });
     setSelectedRole(null);
+  };
+
+  const toggleChatbot = () => {
+    setIsChatbotOpen((prev) => !prev);
   };
 
   const style = {
@@ -116,6 +122,16 @@ export default function App() {
                   </main>
                 </div>
               </div>
+              <Button
+                variant="default"
+                size="icon"
+                className="fixed right-8 top-[calc(100vh-80px)] rounded-full h-14 w-14 shadow-lg cyber-glow z-40"
+                onClick={toggleChatbot}
+                data-testid="button-toggle-floating-chatbot"
+              >
+                <MessageCircle className="h-7 w-7" />
+              </Button>
+              <Chatbot isOpen={isChatbotOpen} onClose={toggleChatbot} />
             </SidebarProvider>
           )}
           <Toaster />
