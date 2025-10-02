@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Switch, Route } from "wouter";
+import { Switch, Route, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -18,6 +18,7 @@ import QueryPage from "@/pages/query";
 import ReportsPage from "@/pages/reports";
 import ScansPage from "@/pages/scans";
 import VulnerabilitiesPage from "@/pages/vulnerabilities";
+import SettingsPage from "@/pages/settings";
 import NotFound from "@/pages/not-found";
 import { Chatbot } from "@/components/chatbot";
 
@@ -35,6 +36,7 @@ function Router() {
       <Route path="/reports" component={ReportsPage} />
       <Route path="/scans" component={ScansPage} />
       <Route path="/vulnerabilities" component={VulnerabilitiesPage} />
+      <Route path="/settings" component={SettingsPage} />
       <Route component={NotFound} />
     </Switch>
   );
@@ -48,6 +50,7 @@ export default function App() {
   });
   const [selectedRole, setSelectedRole] = useState<"admin" | "customer" | null>(null);
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
+  const [location, setLocation] = useLocation(); // Add this line
 
   const handleRoleSelect = (role: "admin" | "customer") => {
     setSelectedRole(role);
@@ -63,6 +66,7 @@ export default function App() {
       userRole: selectedRole!,
       user: { email: credentials.email }
     });
+    setLocation("/"); // Redirect to dashboard
   };
 
   const handleLogout = () => {
